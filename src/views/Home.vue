@@ -1,16 +1,16 @@
 <template>
     <div>
         <carousel>轮播图</carousel>
-        <div class="content" v-for="">
+        <div class="contents" v-for="">
             <div class="date">
                 <p>今日热闻</p>
             </div>
             <ul>
-                <li v-for="datas in data" class="article">
-                    <router-link v-bind:to="{name: 'show', params: {id:datas.id}}">
-                        <div class="title">{{datas.title}}</div>
+                <li v-for="data in datas" class="article">
+                    <router-link v-bind:to="{name: 'show', params: {id:data.id}}">
+                        <div class="title">{{data.title}}</div>
                         <div class="img">
-                            <img src="../assets/test.jpg">
+                            <img :src="replaceUrl(data.images[0])">
                         </div>
                     </router-link>
                 </li>
@@ -22,17 +22,15 @@
 import Carousel from '../components/Carousel.vue'
 export default {
     created: function () {
-        // console.log('aa')
         this.$http.get('/latest').then(function (response) {
-            // console.log(response.body.stories)
-            this.data = response.body.stories
+            this.datas = response.body.stories
         }, function (response) {
             console.log('error')
         })
     },
     data () {
         return {
-            data: []
+            datas: ''
         }
     },
     components: {
@@ -41,7 +39,7 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.content
+.contents
     padding 0 10px
     background-color #f3f3f3
 .date p
@@ -64,8 +62,10 @@ export default {
     color #000
 .article .title
     flex 4
+    margin-right 10px
 .article .img
-    flex 1
+    width 70px
+    height 70px
 .article .img img
     width 100%
     height 100%
