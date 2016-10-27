@@ -2,16 +2,13 @@
     <div class="header">
         <div class="container">
             <div class="icon">
-                <i class="iconfont">&#xe63d;</i>
+                <i class="iconfont" :class="iconone"></i>
             </div>
             <div class="text">
                 <router-link v-bind:to="target">{{text}}</router-link>
             </div>
-            <div class="icon">
-                <i class="iconfont">&#xe66c;</i>
-            </div>
-            <div class="icon">
-                <i class="iconfont">&#xe675;</i>
+            <div class="icon" v-for="icon in iconothers">
+                <i class="iconfont" :class="icon"></i>
             </div>
         </div>
     </div>
@@ -20,8 +17,9 @@
 export default {
     props: {
         text: '',
-        icon: '',
-        target: ''
+        iconone: '',
+        target: '',
+        iconothers: ''
     }
 }
 </script>

@@ -732,7 +732,7 @@ hr {
     border-top-width: 0;
 }
 p {
-    margin: 20px 0 !important;
+    margin: 20px 0;
 }
 .dudu-night .content {
     color: #797b80;

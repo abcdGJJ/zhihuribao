@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <common-header v-bind:text="title" v-bind:icon="icon" v-bind:target="target"></common-header>
+        <common-header v-bind:text="title" :iconone="iconclassName" v-bind:target="target" :iconothers="iconsClassName"></common-header>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -12,8 +12,14 @@ export default {
     data () {
         return {
             title: '首页',
-            icon: '',
-            target: '/'
+            iconclassName: 'icon-sangeheng',
+            target: '/',
+            iconsClassName: ['icon-click-16', 'icon-sangedian']
+        }
+    },
+    events: {
+        'commonHeaderContent': function (text) {
+            console.log(text)
         }
     },
     components: {

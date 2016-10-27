@@ -14,6 +14,7 @@
                         </div>
                     </router-link>
                 </li>
+            </ul>
             </div>
         </div>
     </div>
@@ -48,7 +49,6 @@ export default {
     margin-left 10px
 .article
     cursor pointer
-    height 90px
     background-color #fff
     padding 10px
     margin-bottom 15px
