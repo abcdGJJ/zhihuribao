@@ -1,13 +1,13 @@
 <template>
-    <div>
-        <carousel>轮播图</carousel>
-        <div class="contents" v-for="">
+    <div class="display">
+        <carousel :items="datas.top_stories"></carousel>
+        <div class="contents">
             <div class="date">
                 <p>今日热闻</p>
             </div>
             <ul>
-                <li v-for="data in datas" class="article">
-                    <router-link v-bind:to="{name: 'show', params: {id:data.id}}">
+                <li v-for="data in datas.stories" class="article">
+                    <router-link to="{name: 'show', params: {id:data.id}}">
                         <div class="title">{{data.title}}</div>
                         <div class="img">
                             <img :src="replaceUrl(data.images[0])">
@@ -21,10 +21,11 @@
 </template>
 <script>
 import Carousel from '../components/Carousel.vue'
+import CarouselItem from '../components/CarouselItem.vue'
 export default {
     created: function () {
         this.$http.get('/latest').then(function (response) {
-            this.datas = response.body.stories
+            this.datas = response.body
         }, function (response) {
             console.log('error')
         })
@@ -35,11 +36,14 @@ export default {
         }
     },
     components: {
-        Carousel
+        Carousel,
+        CarouselItem
     }
 }
 </script>
 <style lang="stylus" scoped>
+.display
+    overflow hidden
 .contents
     padding 0 10px
     background-color #f3f3f3

@@ -195,7 +195,7 @@ export default {
         height: 30px;
         line-height: 30px;
         background: #f0f0f0;
-        color: #B8B8B8;
+        color: #B8B8B8!important;
     & .question
         overflow: hidden;
         padding: 0 20px!important;

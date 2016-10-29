@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import Swiper from 'swiper'
 import App from './App.vue'
-// import ReplaceUrl from './filters/replaceUrl.js'
+window.Swiper = Swiper
 Vue.use(VueRouter)
 Vue.use(VueResource)
-// Vue.filter('replaceUrl', function (value) {
-//     return value.split('').reverse().join('')
-// })
+// 过滤器
 Vue.prototype.replaceUrl = function (value) {
     if (!value) {
         return
