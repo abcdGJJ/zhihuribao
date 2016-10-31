@@ -10,9 +10,14 @@
 </template>
 <script>
 export default {
-    created () {
+    activated () {
+        // this.getArticle()
+        console.log('created')
         this.getArticle()
     },
+    // watch: {
+    //     '$route': 'getArticle'
+    // },
     data () {
         return {
             loading: true,
@@ -23,17 +28,26 @@ export default {
     },
     methods: {
         getArticle () {
+            if (!this.$route.params.id) {
+                return
+            }
+            console.log('get')
+            window.scroll(0, 0)
             let url = '/detail/' + this.$route.params.id
             this.$http.get(url).then(function (response) {
                 this.article = response.body
-                this.loading = !this.loading
+                this.loading = false
             }, function (response) {
-                this.loading = !this.loading
-                this.error = !this.error
+                // this.loading = true
+                this.error = true
                 console.log('error')
             })
         }
     }
+    // beforeRouteEnter (to, from, next) {
+    //     window.localStorage.setItem('scrolltop', window.pageYOffset)
+    //     next()
+    // }
 }
 </script>
 <style lang="stylus">

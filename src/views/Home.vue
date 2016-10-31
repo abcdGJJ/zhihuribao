@@ -7,7 +7,7 @@
             </div>
             <ul>
                 <li v-for="data in datas.stories" class="article">
-                    <router-link to="{name: 'show', params: {id:data.id}}">
+                    <router-link :to="{name: 'show', params: {id:data.id}}">
                         <div class="title">{{data.title}}</div>
                         <div class="img">
                             <img :src="replaceUrl(data.images[0])">
@@ -21,9 +21,9 @@
 </template>
 <script>
 import Carousel from '../components/Carousel.vue'
-import CarouselItem from '../components/CarouselItem.vue'
 export default {
-    created: function () {
+    created () {
+        console.log('created home')
         this.$http.get('/latest').then(function (response) {
             this.datas = response.body
         }, function (response) {
@@ -36,9 +36,26 @@ export default {
         }
     },
     components: {
-        Carousel,
-        CarouselItem
+        Carousel
     }
+    // beforeRouteEnter: (to, from, next) => {
+    //     // window.Vue.nextTick(
+    //         // () =>
+    //     // next(vm => {
+    //     //     console.log('typeof vm')
+    //     // })
+    //         // }))
+    //     // next(
+    //     //     // this.nextTick(
+    //     //     //     function () {
+    //     //     //         window.scroll(0, 500)
+    //     //     //     }
+    //     //     // )
+    //     // )
+    //     // setTimeout(function () {
+    //     //     window.scroll(0, 500)
+    //     // }, 1)
+    // }
 }
 </script>
 <style lang="stylus" scoped>

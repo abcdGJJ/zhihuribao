@@ -1,8 +1,10 @@
 <template>
     <div id="app">
-        <common-header v-bind:text="title" :iconone="iconclassName" v-bind:target="target" :iconothers="iconsClassName"></common-header>
-        <transition name="fade" mode="out-in">
-            <router-view></router-view>
+        <common-header :text="title" :iconone="iconclassName" :target="target" :iconothers="iconsClassName"></common-header>
+        <transition>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </transition>
     </div>
 </template>
@@ -15,11 +17,6 @@ export default {
             iconclassName: 'icon-sangeheng',
             target: '/',
             iconsClassName: ['icon-click-16', 'icon-sangedian']
-        }
-    },
-    events: {
-        'commonHeaderContent': function (text) {
-            console.log(text)
         }
     },
     components: {
