@@ -2,9 +2,7 @@
     <div id="app">
         <common-header :text="title" :iconone="iconclassName" :target="target" :iconothers="iconsClassName"></common-header>
         <transition>
-            <keep-alive>
-                <router-view></router-view>
-            </keep-alive>
+            <router-view></router-view>
         </transition>
     </div>
 </template>

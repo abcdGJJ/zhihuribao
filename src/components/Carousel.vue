@@ -20,7 +20,7 @@ export default {
                 autoplay: 2000, // 自动播放
                 direction: 'horizontal',
                 loop: true,
-                // autoplayDisableOnInteraction: false,
+                autoplayDisableOnInteraction: false,
                 pagination: '.swiper-pagination',
                 paginationClickable: true
             })

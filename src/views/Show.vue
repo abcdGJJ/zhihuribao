@@ -1,20 +1,23 @@
 <template>
     <div class="show">
         <div class="img">
-            <img :src="replaceUrl(article.image)" v-cloak>
+            <img :src="replaceUrl(article.image)">
         </div>
         <div v-if="loading">加载中......</div>
         <div v-if="error">错误</div>
-        <div class="detail" v-html="replaceUrl(article.body)" v-cloak></div>
+        <div class="detail" v-html="replaceUrl(article.body)"></div>
     </div>
 </template>
 <script>
 export default {
-    activated () {
+    created () {
         // this.getArticle()
         console.log('created')
         this.getArticle()
     },
+    // deactivated () {
+    //     console.log('停止routerLink')
+    // },
     // watch: {
     //     '$route': 'getArticle'
     // },
@@ -28,26 +31,25 @@ export default {
     },
     methods: {
         getArticle () {
+            console.log('get article')
             if (!this.$route.params.id) {
                 return
             }
-            console.log('get')
+            this.article = ''
+            this.loading = true
+            this.error = false
             window.scroll(0, 0)
             let url = '/detail/' + this.$route.params.id
             this.$http.get(url).then(function (response) {
                 this.article = response.body
                 this.loading = false
             }, function (response) {
-                // this.loading = true
+                this.loading = false
                 this.error = true
                 console.log('error')
             })
         }
     }
-    // beforeRouteEnter (to, from, next) {
-    //     window.localStorage.setItem('scrolltop', window.pageYOffset)
-    //     next()
-    // }
 }
 </script>
 <style lang="stylus">
