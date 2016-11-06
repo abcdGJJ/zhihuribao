@@ -10,17 +10,15 @@
 </template>
 <script>
 export default {
-    created () {
-        // this.getArticle()
-        console.log('created')
+    // beforeCreate () {
+    //     console.log('before create')
+    //     console.log(window.scrollY)
+    //     window.sessionStorage.setItem('scrollTop', window.scrollY)
+    // },
+    activated () {
+        console.log('activated show')
         this.getArticle()
     },
-    // deactivated () {
-    //     console.log('停止routerLink')
-    // },
-    // watch: {
-    //     '$route': 'getArticle'
-    // },
     data () {
         return {
             loading: true,
@@ -38,7 +36,7 @@ export default {
             this.article = ''
             this.loading = true
             this.error = false
-            window.scroll(0, 0)
+            // window.scroll(0, 0)
             let url = '/detail/' + this.$route.params.id
             this.$http.get(url).then(function (response) {
                 this.article = response.body

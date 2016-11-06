@@ -1,9 +1,9 @@
 <template>
     <div id="app">
         <common-header :text="title" :iconone="iconclassName" :target="target" :iconothers="iconsClassName"></common-header>
-        <transition>
+        <keep-alive>
             <router-view></router-view>
-        </transition>
+        </keep-alive>
     </div>
 </template>
 <script>
@@ -33,8 +33,7 @@ body
 a
     text-decoration none
 .fade-enter-active, .fade-leave-active
-    transition all .3s ease
+    transition all .2s ease
 .fade-enter, .fade-leave-active
-    // opacity 0
-    transform translate3d(0, 10px, 0)
+    opacity 0
 </style>

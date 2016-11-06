@@ -3,7 +3,7 @@
         <carousel :items="datas.top_stories"></carousel>
         <div class="contents">
             <div class="date">
-                <p>今日热闻</p>
+                <p>{{ date }}</p>
             </div>
             <ul>
                 <li v-for="data in datas.stories" class="article">
@@ -22,17 +22,53 @@
 <script>
 import Carousel from '../components/Carousel.vue'
 export default {
+    // beforeDestroy () {
+    //     // console.log(window.sessionStorage.getItem('scrollTop'))
+    //     // let scrollTop = window.sessionStorage.getItem('scrollTop') ? window.sessionStorage.getItem('scrollTop') : 0
+    //     // console.log(scrollTop)
+    //     // window.scrollTo(0, scrollTop)
+    //     console.log('before destroy')
+    //     console.log(window.scrollY)
+    //     window.sessionStorage.setItem('scrollTop', window.scrollY)
+    // },
+    // mounted () {
+    //     console.log('mount')
+    //     console.log(window.sessionStorage.getItem('scrollTop'))
+    // },
     created () {
         console.log('created home')
         this.$http.get('/latest').then(function (response) {
+            this.date = '今日热闻'
             this.datas = response.body
         }, function (response) {
             console.log('error')
         })
     },
+    // updated () {
+    //     console.log('update')
+    //     console.log(window.localStorage.getItem('scrollTop'))
+    //     window.scrollTo(0, window.localStorage.scrollTop)
+    //     // this.$nextTick(function () {
+    //     //     console.log('next运行')
+    //     //     window.scrollTo(0, window.localStorage.scrollTop)
+    //     // })
+    //     // if (window.sessionStorage.scrollTop) {
+    //     //     window.scrollTo(0, window.sessionStorage.scrollTop)
+    //     // }
+    // },
+    // destroyed () {
+    //     console.log('before destroy')
+    //     window.localStorage.setItem('scrollTop', window.scrollY)
+    // },
+    // beforeRouteLeave (to, from, next) {
+    //     window.localStorage.setItem('scrollTop', window.scrollY)
+    //     // window.localStorage.datas = JSON.stringify(this.datas)
+    //     next()
+    // },
     data () {
         return {
-            datas: ''
+            datas: '',
+            date: ''
         }
     },
     components: {

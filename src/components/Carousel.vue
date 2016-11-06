@@ -15,15 +15,13 @@
 export default {
     props: ['items'],
     updated: function () {
-        this.$nextTick(function () {
-            new window.Swiper('.swiper-container', {
-                autoplay: 2000, // 自动播放
-                direction: 'horizontal',
-                loop: true,
-                autoplayDisableOnInteraction: false,
-                pagination: '.swiper-pagination',
-                paginationClickable: true
-            })
+        new window.Swiper('.swiper-container', {
+            autoplay: 2000, // 自动播放
+            direction: 'horizontal',
+            loop: true,
+            autoplayDisableOnInteraction: false,
+            pagination: '.swiper-pagination',
+            paginationClickable: true
         })
     }
 }

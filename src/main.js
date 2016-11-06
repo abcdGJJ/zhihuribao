@@ -19,10 +19,10 @@ const routes = [
     {path: '/', component: resolve => require(['./views/Home.vue'], resolve)},
     {path: '/show/:id', name: 'show', component: resolve => require(['./views/Show.vue'], resolve)},
     {path: '/counter', component: resolve => require(['./views/Counter.vue'], resolve)},
+    {path: '/test', component: resolve => require(['./views/Test.vue'], resolve)},
     {path: '*', component: resolve => require(['./views/Home.vue'], resolve)}
 ]
 const router = new VueRouter({
-    // mode: 'history',
     routes
 })
 new Vue({
