@@ -6,7 +6,26 @@ import App from './App.vue'
 import store from './store/store'
 window.Swiper = Swiper
 Vue.use(VueRouter)
-Vue.use(VueResource)
+Vue.use(VueResource);
+// rem 布局方案
+(
+    function (doc, win) {
+        var el = doc.documentElement
+        var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        var recalc = function () {
+            var clientWidth = el.clientWidth
+            if (!clientWidth) return
+            if (clientWidth >= 720) {
+                el.style.fontSize = '100' + 'px'
+            } else {
+                el.style.fontSize = clientWidth / 7.2 + 'px'
+            }
+        }
+        if (!el.addEventListener) return
+        win.addEventListener(resizeEvt, recalc, false)
+        doc.addEventListener('DOMContentLoaded', recalc, false)
+    }
+)(document, window)
 // 过滤器
 Vue.prototype.replaceUrl = function (value) {
     if (!value) {

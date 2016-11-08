@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <common-header :text="title" :iconone="iconclassName" :target="target" :iconothers="iconsClassName"></common-header>
+        <common-header :event="$store.state.iconclassName[0].action"></common-header>
         <keep-alive>
             <router-view></router-view>
         </keep-alive>
@@ -9,14 +9,6 @@
 <script>
 import CommonHeader from './components/CommonHeader.vue'
 export default {
-    data () {
-        return {
-            title: '首页',
-            iconclassName: 'icon-sangeheng',
-            target: '/',
-            iconsClassName: ['icon-click-16', 'icon-sangedian']
-        }
-    },
     components: {
         CommonHeader
     }

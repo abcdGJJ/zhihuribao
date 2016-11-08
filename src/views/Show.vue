@@ -1,21 +1,30 @@
 <template>
     <div class="show">
-        <div class="img">
-            <img :src="replaceUrl(article.image)">
+        <div class="img" :style="{background: 'url(' + replaceUrl(article.image) + ') no-repeat top left / 100% 100%'}">
+            <div class="mask"></div>
+            <p class="imgtitle">{{ article.title }}</p>
+            <p class="imgsource" align="right">{{ article.image_source }}</p>
         </div>
-        <div v-if="loading">加载中......</div>
+        <div v-if="loading" class="loading">加载中......</div>
         <div v-if="error">错误</div>
         <div class="detail" v-html="replaceUrl(article.body)"></div>
     </div>
 </template>
 <script>
 export default {
+    // computed: {
+    //     // console.log('computed')
+    //     $store.state: function () {
+    //         title: '首'
+    //     }
+    // },
     // beforeCreate () {
     //     console.log('before create')
     //     console.log(window.scrollY)
     //     window.sessionStorage.setItem('scrollTop', window.scrollY)
     // },
     activated () {
+        this.$store.commit('replacehead')
         console.log('activated show')
         this.getArticle()
     },
@@ -38,6 +47,7 @@ export default {
             this.error = false
             // window.scroll(0, 0)
             let url = '/detail/' + this.$route.params.id
+            console.log(url)
             this.$http.get(url).then(function (response) {
                 this.article = response.body
                 this.loading = false
@@ -51,6 +61,10 @@ export default {
 }
 </script>
 <style lang="stylus">
+.show
+    padding-top 70px
+.loading
+    font-size .2rem
 /*以下排版代码 版权所有 知乎*/
 .detail
     & a:active, a:hover
@@ -632,13 +646,35 @@ export default {
         color: #797b80;
     & .dudu-night .origin-source.with-link:after
         border-color: transparent transparent transparent #797b80;
+.mask
+    position absolute
+    width 100%
+    height 100%
+    // background linear-gradient(to bottom, rgba(0,0,0,0) 40% ,rgba(0,0,0,0.3) 100%)
+    background linear-gradient(to bottom, rgba(0,0,0,0) 25%,rgba(0,0,0,0.6) 100%);
 </style>
 <style>
-.img img {
+.img {
     width: 100%;
-    height: 280px
+    height: 4rem;
+    position: relative;
+    font-size: .42rem;
+    color: #fff;
 }
-<style>
+p.imgtitle {
+    position: absolute;
+    bottom: .5rem;
+    margin: 0 .3rem;
+}
+p.imgsource {
+    position: absolute;
+    bottom: .1rem;
+    right: .1rem;
+    margin: 0 .2rem;
+    font-size: .26rem;
+    /*color: #646464;*/
+    color: rgba(255,255,255,.6);
+}
 /*知乎全局样式调整*/
 .view-more a {
     color: #B8B8B8;

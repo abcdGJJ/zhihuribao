@@ -2,13 +2,13 @@
     <div class="header">
         <div class="container">
             <div class="icon">
-                <i class="iconfont" :class="iconone"></i>
+                <i class="iconfont" :class="$store.state.iconclassName[0].name" @click="event"></i>
             </div>
             <div class="text">
-                <router-link v-bind:to="target">{{text}}</router-link>
+                <a href="/#">{{$store.state.title}}</a>
             </div>
-            <div class="icon" v-for="icon in iconothers">
-                <i class="iconfont" :class="icon"></i>
+            <div class="icon" v-for="icon in $store.state.iconsClassName">
+                <i class="iconfont" :class="icon.name"></i>
             </div>
         </div>
     </div>
@@ -16,10 +16,12 @@
 <script>
 export default {
     props: {
-        text: '',
-        iconone: '',
-        target: '',
-        iconothers: ''
+        event: ''
+    },
+    methods: {
+        slide (arg) {
+            console.log('aaa')
+        }
     }
 }
 </script>
@@ -40,14 +42,19 @@ export default {
     height 70px
     background-color #00a2ed
     display flex
+    position fixed
+    top 0
+    left 0
+    z-index 10
     // padding 0 10px
 .icon
     flex 1
     text-align center
 .iconfont
-    font-size 24px
+    font-size 22px
+// @media 
 .text
-    flex 5
+    flex 3
 .icon, .text
     color #fff
 .text a

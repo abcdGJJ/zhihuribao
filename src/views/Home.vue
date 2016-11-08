@@ -22,6 +22,7 @@
 <script>
 import Carousel from '../components/Carousel.vue'
 export default {
+
     // beforeDestroy () {
     //     // console.log(window.sessionStorage.getItem('scrollTop'))
     //     // let scrollTop = window.sessionStorage.getItem('scrollTop') ? window.sessionStorage.getItem('scrollTop') : 0
@@ -35,8 +36,9 @@ export default {
     //     console.log('mount')
     //     console.log(window.sessionStorage.getItem('scrollTop'))
     // },
-    created () {
-        console.log('created home')
+    activated () {
+        this.$store.commit('originalhead')
+        console.log('activated home')
         this.$http.get('/latest').then(function (response) {
             this.date = '今日热闻'
             this.datas = response.body
@@ -96,6 +98,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .display
+    padding-top 70px
     overflow hidden
 .contents
     padding 0 10px
@@ -103,6 +106,7 @@ export default {
 .date p
     height 40px
     line-height 40px
+    font-size .2rem
     margin-left 10px
 .article
     cursor pointer
@@ -119,10 +123,12 @@ export default {
     color #000
 .article .title
     flex 4
+    font-size .38rem
     margin-right 10px
 .article .img
-    width 70px
-    height 70px
+    width 1.7rem
+    height 1.7rem
+    font-size .2rem
 .article .img img
     width 100%
     height 100%
