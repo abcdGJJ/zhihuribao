@@ -1,6 +1,8 @@
 # 知乎日报--Vue版本
 
 > A Vue.js project
+>
+> demo地址：[demo](https://i.gaojiajun.cn)
 
 ## Build Setup
 
