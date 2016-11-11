@@ -49,3 +49,4 @@ new Vue({
     store,
     router
 }).$mount('#app')
+window.router = router

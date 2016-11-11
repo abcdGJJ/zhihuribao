@@ -2,13 +2,13 @@
     <div class="header">
         <div class="container">
             <div class="icon">
-                <i class="iconfont" :class="$store.state.iconclassName[0].name" @click="event"></i>
+                <i class="iconfont" :class="$store.state.iconclassName[0].name" @click="$store.commit($store.state.iconclassName[0].action)"></i>
             </div>
             <div class="text">
                 <a href="/#">{{$store.state.title}}</a>
             </div>
             <div class="icon" v-for="icon in $store.state.iconsClassName">
-                <i class="iconfont" :class="icon.name"></i>
+                <i class="iconfont" :class="icon.name" @click="$store.commit(icon.action)"></i>
             </div>
         </div>
     </div>
@@ -18,10 +18,16 @@ export default {
     props: {
         event: ''
     },
+    created () {
+        console.log('created header')
+    },
     methods: {
-        slide (arg) {
-            console.log('aaa')
-        }
+        // doSomething () {
+        //     this.$store.commit(this.$store.state.iconclassName[0].action)
+        // },
+        // doOtherthing() {
+        //     this.$store.commit(this.$store.state.)
+        // }
     }
 }
 </script>

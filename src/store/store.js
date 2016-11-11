@@ -26,13 +26,20 @@ const mutations = {
         state.iconclassName = [{name: 'icon-houtui', action: 'back'}]
         state.iconsClassName = [{name: 'icon-share', action: 'info'}, {name: 'icon-shoucang', action: 'night'}, {name: 'icon-pinglun01', action: 'info'}, {name: 'icon-dianzan', action: 'info'}]
     },
-    reset (state) {
-        state.count = 0
+    slide (state) {
+        console.log('slide')
+    },
+    back (state) {
+        window.router.go(-1)
     }
 }
 const actions = {
-    // originalhead: ({ commit }) => commit('originalhead'),
-    // replacehead: ({ commit }) => commit('replacehead'),
+    // originalhead ({ commit }) {
+    //     commit('originalhead')
+    // },
+    // replacehead ({ commit }) {
+    //     commit('replacehead')
+    // }
     // addifodd ({commit, state}) {
     //     if ((state.count + 1) % 2 === 0) {
     //         commit('increment')

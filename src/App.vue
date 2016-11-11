@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <common-header :event="$store.state.iconclassName[0].action"></common-header>
+        <common-header></common-header>
         <keep-alive>
             <router-view></router-view>
         </keep-alive>
